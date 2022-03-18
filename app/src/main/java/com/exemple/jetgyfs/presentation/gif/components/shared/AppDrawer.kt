@@ -19,7 +19,6 @@ fun AppDrawer(
     navController: NavController
 ) {
     val currentRoute = navController.currentBackStackEntry?.destination?.route
-
     val screens = AppScreens.values()
 
     Column(
@@ -39,11 +38,6 @@ fun AppDrawer(
                 )
             )
         }
-//        Divider(
-//            modifier = Modifier
-//                .fillMaxWidth(),
-//            color = Color.DarkGray
-//        )
 
         Spacer(modifier = Modifier.height(40.dp))
 
@@ -51,7 +45,7 @@ fun AppDrawer(
             if (item.enableInDrawer) {
                 AppDrawerItem(
                     screen = item,
-//                    isSelected = currentRoute == item.path,
+                    isSelected = currentRoute == item.name,
                     onClick = {
                         Log.d("Nav", "Navagation")
                     }

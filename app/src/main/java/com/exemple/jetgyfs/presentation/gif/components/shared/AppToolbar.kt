@@ -2,6 +2,7 @@ package com.exemple.jetgyfs.presentation.gif.components.shared
 
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
@@ -12,22 +13,38 @@ import kotlinx.coroutines.launch
 @Composable
 fun AppToolbar(
     scaffoldState: ScaffoldState,
-    scope: CoroutineScope
+    scope: CoroutineScope,
+    isBackNavigationButtonEnabled: Boolean,
+    backNavigationButtonAction: () -> Unit = {}
 ) {
     TopAppBar(
         title = {
             Text(text = stringResource(id = R.string.app_name))
         },
         navigationIcon = {
-            IconButton(
-                onClick = {
-                    scope.launch {
-                        scaffoldState.drawerState.open()
+            if (isBackNavigationButtonEnabled) {
+                IconButton(
+                    onClick = {
+                        backNavigationButtonAction.invoke()
                     }
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.ArrowBack,
+                        contentDescription = "Arrow back Icon"
+                    )
                 }
-            ) {
-                Icon(imageVector = Icons.Default.Menu, contentDescription = "Menu Icon" )
+            } else {
+                IconButton(
+                    onClick = {
+                        scope.launch {
+                            scaffoldState.drawerState.open()
+                        }
+                    }
+                ) {
+                    Icon(imageVector = Icons.Default.Menu, contentDescription = "Menu Icon" )
+                }
             }
+
         }
     )
 }

@@ -18,7 +18,8 @@ import androidx.navigation.NavController
 fun AppScaffold(
     scaffoldState: ScaffoldState,
     navController: NavController,
-    content: @Composable () -> Unit
+    enableBackNavigation: Boolean = false,
+    content: @Composable () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
 
@@ -27,8 +28,11 @@ fun AppScaffold(
         topBar = {
             AppToolbar(
                 scaffoldState = scaffoldState,
-                scope = scope
-            )
+                scope = scope,
+                isBackNavigationButtonEnabled = enableBackNavigation
+            ) {
+                navController.popBackStack()
+            }
         },
         drawerContent = {
             AppDrawer(navController = navController)
@@ -39,13 +43,7 @@ fun AppScaffold(
                 .fillMaxSize(),
             color = Color.Black
         ) {
-            Column(
-                modifier = Modifier
-                    .padding(12.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                content()
-            }
+            content()
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.exemple.jetgyfs.presentation.gif.components.shared
 
+import android.util.Log
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -18,8 +19,10 @@ import com.exemple.jetgyfs.presentation.gif.navigation.AppScreens
 @Composable
 fun AppDrawerItem(
     screen: AppScreens,
+    isSelected: Boolean,
     onClick: () -> Unit
 ) {
+    val selectedColor = if(isSelected) MaterialTheme.colors.primary else Color.White
     Divider(
         modifier = Modifier
             .fillMaxWidth(),
@@ -38,14 +41,14 @@ fun AppDrawerItem(
         Icon(
             imageVector = screen.icon,
             contentDescription = screen.path,
-            tint = Color.White,
+            tint = selectedColor,
             modifier = Modifier.size(20.dp)
         )
         Spacer(modifier = Modifier.width(7.dp))
         Text(
             text = screen.path,
             fontSize = 18.sp,
-            color = Color.White
+            color = selectedColor
         )
     }
     Divider(

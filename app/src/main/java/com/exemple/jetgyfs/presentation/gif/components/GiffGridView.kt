@@ -20,11 +20,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.exemple.jetgyfs.domain.model.Data
+import com.exemple.jetgyfs.presentation.gif.navigation.AppScreens
+import com.google.gson.Gson
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun GiffGridView(giffs: List<Data>) {
+fun GiffGridView(
+    navController: NavController,
+    giffs: List<Data>
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -39,7 +45,14 @@ fun GiffGridView(giffs: List<Data>) {
                 if ((index + 1) == giffs.size) {
                     LoadMoreGiffsButton()
                 } else {
-                    GiffGridCell(giff = item)
+                    GiffGridCell(giff = item) { giff ->
+                        val giffJson = Gson().toJson(giff)
+
+                        navController.navigate(
+                            route = AppScreens.DETAIL.name + "?giff={giff}"
+                                .replace("{giff}", giffJson )
+                        )
+                    }
                 }
             }
         }

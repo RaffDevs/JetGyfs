@@ -36,17 +36,27 @@ fun GiffHomeScreen(
         scaffoldState = scaffolState,
         navController = navController
     ) {
-        GiffSearchField(
-            value = search.value,
-            onValueChange = { text -> search.value = text },
-            label = "Procurar",
-            onImeAction = {
-                viewModel.getGifsBySearch(search.value)
-                search.value = ""
-            }
-        )
-        Spacer(modifier = Modifier.height(20.dp))
-        GiffGridView(giffs = gifs)
+        Column(
+            modifier = Modifier
+                .padding(12.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            GiffSearchField(
+                value = search.value,
+                onValueChange = { text -> search.value = text },
+                label = "Procurar",
+                onImeAction = {
+                    viewModel.getGifsBySearch(search.value)
+                    search.value = ""
+                }
+            )
+            Spacer(modifier = Modifier.height(20.dp))
+            GiffGridView(
+                navController = navController,
+                giffs = gifs
+            )
+        }
+
     }
 
 

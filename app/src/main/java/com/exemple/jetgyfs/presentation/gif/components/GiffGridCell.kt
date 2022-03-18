@@ -13,12 +13,17 @@ import com.exemple.jetgyfs.domain.model.Data
 import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
-fun GiffGridCell(giff: Data) {
+fun GiffGridCell(
+    giff: Data,
+    onClickCell: (giff: Data) -> Unit
+) {
     GlideImage(
         modifier = Modifier
             .size(128.dp)
             .padding(4.dp)
-            .clickable { Log.d("Opa", "Hlloe") },
+            .clickable {
+               onClickCell(giff)
+            },
         imageModel = giff.images.fixed_height.url,
         contentDescription = giff.title,
         loading = {
