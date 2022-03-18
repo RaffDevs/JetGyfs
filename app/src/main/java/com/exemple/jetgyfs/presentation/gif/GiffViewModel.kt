@@ -1,18 +1,16 @@
 package com.exemple.jetgyfs.presentation.gif
 
-import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.exemple.jetgyfs.domain.gyfs.model.Data
-import com.exemple.jetgyfs.domain.gyfs.repository.GifRepository
+import com.exemple.jetgyfs.domain.model.Data
+import com.exemple.jetgyfs.domain.repository.GifRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class GifViewModel
+class GiffViewModel
 @Inject constructor(private val gifRepository: GifRepository): ViewModel(){
     private val listGifs = mutableStateListOf<Data>()
 

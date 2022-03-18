@@ -1,4 +1,4 @@
-package com.exemple.jetgyfs.domain.gyfs.model
+package com.exemple.jetgyfs.domain.model
 
 data class Data(
     val id: String,

@@ -1,9 +1,9 @@
 package com.exemple.jetgyfs.di
 
-import com.exemple.jetgyfs.domain.gyfs.data.repository.GifRepositoryImpl
-import com.exemple.jetgyfs.domain.gyfs.repository.GifRepository
+import com.exemple.jetgyfs.data.repository.GifRepositoryImpl
+import com.exemple.jetgyfs.domain.repository.GifRepository
 import com.exemple.jetgyfs.networking.Constants
-import com.exemple.jetgyfs.networking.GifApi
+import com.exemple.jetgyfs.data.data_source.api.GifApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

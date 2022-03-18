@@ -1,6 +1,6 @@
-package com.exemple.jetgyfs.domain.gyfs.repository
+package com.exemple.jetgyfs.domain.repository
 
-import com.exemple.jetgyfs.domain.gyfs.model.ListGiff
+import com.exemple.jetgyfs.domain.model.ListGiff
 
 interface GifRepository {
     suspend fun getRandomGifs(): ListGiff?

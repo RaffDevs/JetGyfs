@@ -1,13 +1,12 @@
-package com.exemple.jetgyfs.domain.gyfs.data.repository
+package com.exemple.jetgyfs.data.repository
 
-import android.util.Log
-import com.exemple.jetgyfs.domain.gyfs.model.ListGiff
-import com.exemple.jetgyfs.domain.gyfs.repository.GifRepository
-import com.exemple.jetgyfs.networking.GifApi
+import com.exemple.jetgyfs.domain.model.ListGiff
+import com.exemple.jetgyfs.domain.repository.GifRepository
+import com.exemple.jetgyfs.data.data_source.api.GifApi
 import javax.inject.Inject
 
 class GifRepositoryImpl
-@Inject constructor( val gifApi: GifApi ) : GifRepository{
+@Inject constructor( val gifApi: GifApi) : GifRepository {
     override suspend fun getSearchGifs(search: String): ListGiff? {
         val gifs = gifApi.getSearchGifs(search = search).body()
         return gifs
