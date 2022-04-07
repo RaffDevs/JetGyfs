@@ -1,6 +1,6 @@
-package com.exemple.jetgyfs.domain.model
+package com.exemple.jetgyfs.data.datasource.api.entity
 
-data class FixedHeight(
+data class FixedHeightEntity(
     val height: String,
     val mp4: String,
     val mp4_size: String,

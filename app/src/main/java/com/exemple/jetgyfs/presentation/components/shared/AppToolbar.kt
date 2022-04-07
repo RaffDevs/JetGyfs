@@ -1,4 +1,4 @@
-package com.exemple.jetgyfs.presentation.gif.components.shared
+package com.exemple.jetgyfs.presentation.shared
 
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons

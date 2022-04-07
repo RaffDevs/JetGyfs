@@ -1,4 +1,4 @@
-package com.exemple.jetgyfs.presentation.gif
+package com.exemple.jetgyfs.presentation.giff.home
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -7,15 +7,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.exemple.jetgyfs.presentation.gif.components.GiffGridView
-import com.exemple.jetgyfs.presentation.gif.components.GiffSearchField
-import com.exemple.jetgyfs.R
-import com.exemple.jetgyfs.presentation.gif.components.shared.AppScaffold
+import com.exemple.jetgyfs.presentation.components.GiffGridView
+import com.exemple.jetgyfs.presentation.components.GiffSearchField
+import com.exemple.jetgyfs.presentation.shared.AppScaffold
 
 @Composable
 fun GiffHomeScreen(

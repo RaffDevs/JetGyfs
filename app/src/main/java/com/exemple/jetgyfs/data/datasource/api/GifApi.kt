@@ -1,6 +1,6 @@
-package com.exemple.jetgyfs.data.data_source.api
+package com.exemple.jetgyfs.data.datasource.api
 
-import com.exemple.jetgyfs.domain.model.ListGiff
+import com.exemple.jetgyfs.data.datasource.api.entity.ListGiffEntity
 import com.exemple.jetgyfs.networking.Constants
 import retrofit2.Response
 import retrofit2.http.GET
@@ -12,7 +12,7 @@ interface GifApi {
         @Query("api_key") key: String = Constants.api_key,
         @Query("limit") limit: Int = 26,
         @Query("rating") lang: String = "pg"
-    ): Response<ListGiff>
+    ): Response<ListGiffEntity>
 
     @GET("search")
     suspend fun getSearchGifs(
@@ -22,5 +22,5 @@ interface GifApi {
         @Query("offset") offset: Int = 0,
         @Query("rating") rating: String = "g",
         @Query("lang") lang: String = "en"
-    ): Response<ListGiff>
+    ): Response<ListGiffEntity>
 }

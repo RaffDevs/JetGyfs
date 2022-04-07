@@ -1,9 +1,8 @@
-package com.exemple.jetgyfs.presentation.gif.components.shared
+package com.exemple.jetgyfs.presentation.shared
 
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -12,7 +11,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.exemple.jetgyfs.presentation.gif.navigation.AppScreens
+import com.exemple.jetgyfs.presentation.giff.navigation.AppScreens
 
 @Composable
 fun AppDrawer(

@@ -1,4 +1,4 @@
-package com.exemple.jetgyfs.data.data_source.db.entity
+package com.exemple.jetgyfs.data.datasource.db.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

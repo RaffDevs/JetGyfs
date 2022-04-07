@@ -1,4 +1,4 @@
-package com.exemple.jetgyfs.presentation.gif.components
+package com.exemple.jetgyfs.presentation.components
 
 import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -21,15 +21,15 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.exemple.jetgyfs.domain.model.Data
-import com.exemple.jetgyfs.presentation.gif.navigation.AppScreens
+import com.exemple.jetgyfs.data.datasource.api.entity.DataEntity
+import com.exemple.jetgyfs.presentation.giff.navigation.AppScreens
 import com.google.gson.Gson
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun GiffGridView(
     navController: NavController,
-    giffs: List<Data>
+    giffs: List<DataEntity>
 ) {
     Column(
         modifier = Modifier

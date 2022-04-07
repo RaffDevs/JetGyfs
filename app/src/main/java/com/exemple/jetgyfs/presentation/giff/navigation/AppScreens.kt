@@ -1,4 +1,4 @@
-package com.exemple.jetgyfs.presentation.gif.navigation
+package com.exemple.jetgyfs.presentation.giff.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Category

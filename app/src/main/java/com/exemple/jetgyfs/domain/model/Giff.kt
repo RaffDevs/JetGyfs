@@ -1,7 +1,7 @@
 package com.exemple.jetgyfs.domain.model
 
-data class Data(
+data class Giff (
     val id: String,
-    val images: Images,
     val title: String,
+    val url: String
 )

@@ -1,4 +1,4 @@
-package com.exemple.jetgyfs.presentation.gif.components
+package com.exemple.jetgyfs.presentation.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding

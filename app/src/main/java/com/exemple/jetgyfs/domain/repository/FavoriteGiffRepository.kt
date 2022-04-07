@@ -1,7 +1,6 @@
 package com.exemple.jetgyfs.domain.repository
 
-import com.exemple.jetgyfs.data.data_source.db.FavoriteGiffDao
-import com.exemple.jetgyfs.data.data_source.db.entity.FavoriteGiff
+import com.exemple.jetgyfs.data.datasource.db.entity.FavoriteGiff
 import kotlinx.coroutines.flow.Flow
 
 interface FavoriteGiffRepository {

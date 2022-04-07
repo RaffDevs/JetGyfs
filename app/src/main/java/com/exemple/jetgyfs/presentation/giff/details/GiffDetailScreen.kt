@@ -1,34 +1,37 @@
-package com.exemple.jetgyfs.presentation.gif
+package com.exemple.jetgyfs.presentation.giff.details
 
 import android.util.Log
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.exemple.jetgyfs.domain.model.Data
-import com.exemple.jetgyfs.presentation.gif.components.shared.AppScaffold
+import com.exemple.jetgyfs.data.datasource.api.entity.DataEntity
+import com.exemple.jetgyfs.presentation.shared.AppScaffold
 import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
 fun GiffDetailScreen(
+    detailViewModel: GiffDetailViewModel = hiltViewModel(),
     navController: NavController,
-    giff: Data
+    giff: DataEntity
 ) {
     val scaffoldState = rememberScaffoldState(
         rememberDrawerState(initialValue = DrawerValue.Closed)
     )
+
+    val context = LocalContext.current
 
     AppScaffold(
         scaffoldState = scaffoldState,
@@ -61,7 +64,52 @@ fun GiffDetailScreen(
             )
             Row() {
                 IconButton(onClick = {
-                    Log.d("Teste", "Hello")
+                    val currentGiff = detailViewModel.getFavoriteGiffByTitle(giff.title)
+
+                    if (currentGiff != null) {
+                        detailViewModel.likeGiff(
+                            detailViewModel.toFavoriteGiff(giff),
+                            onSuccess = { success ->
+                                Toast.makeText(
+                                    context,
+                                    success,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            },
+                            onError = { error ->
+                                Toast.makeText(
+                                    context,
+                                    error,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+                                navController.popBackStack()
+                            }
+                        )
+                    } else {
+                        detailViewModel.unlikeGiff(
+                            currentGiff?.id.toString(),
+                            onSuccess = { success ->
+                                Toast.makeText(
+                                    context,
+                                    success,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+                                navController.popBackStack()
+                            },
+                            onError = { error ->
+                                Toast.makeText(
+                                    context,
+                                    error,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+                                navController.popBackStack()
+                            }
+                        )
+                    }
+
                 }) {
                     Icon(
                         imageVector = Icons.Outlined.Favorite,

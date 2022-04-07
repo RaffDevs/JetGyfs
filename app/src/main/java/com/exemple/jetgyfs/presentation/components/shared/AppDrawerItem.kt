@@ -1,7 +1,5 @@
-package com.exemple.jetgyfs.presentation.gif.components.shared
+package com.exemple.jetgyfs.presentation.shared
 
-import android.util.Log
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
@@ -14,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.exemple.jetgyfs.presentation.gif.navigation.AppScreens
+import com.exemple.jetgyfs.presentation.giff.navigation.AppScreens
 
 @Composable
 fun AppDrawerItem(

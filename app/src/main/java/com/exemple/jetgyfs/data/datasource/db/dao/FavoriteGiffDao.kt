@@ -1,10 +1,10 @@
-package com.exemple.jetgyfs.data.data_source.db
+package com.exemple.jetgyfs.data.datasource.db.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.exemple.jetgyfs.data.data_source.db.entity.FavoriteGiff
+import com.exemple.jetgyfs.data.datasource.db.entity.FavoriteGiff
 import kotlinx.coroutines.flow.Flow
 
 @Dao

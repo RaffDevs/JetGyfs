@@ -1,8 +1,8 @@
 package com.exemple.jetgyfs.domain.repository
 
-import com.exemple.jetgyfs.domain.model.ListGiff
+import com.exemple.jetgyfs.data.datasource.api.entity.ListGiffEntity
 
 interface GifRepository {
-    suspend fun getRandomGifs(): ListGiff?
-    suspend fun getSearchGifs(search: String): ListGiff?
+    suspend fun getRandomGifs(): ListGiffEntity?
+    suspend fun getSearchGifs(search: String): ListGiffEntity?
 }
