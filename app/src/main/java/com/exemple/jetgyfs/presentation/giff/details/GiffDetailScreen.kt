@@ -1,5 +1,6 @@
 package com.exemple.jetgyfs.presentation.giff.details
 
+import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
@@ -8,6 +9,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -18,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.exemple.jetgyfs.data.datasource.api.entity.DataEntity
+import com.exemple.jetgyfs.domain.model.Giff
 import com.exemple.jetgyfs.presentation.shared.AppScaffold
 import com.skydoves.landscapist.glide.GlideImage
 
@@ -25,11 +30,15 @@ import com.skydoves.landscapist.glide.GlideImage
 fun GiffDetailScreen(
     detailViewModel: GiffDetailViewModel = hiltViewModel(),
     navController: NavController,
-    giff: DataEntity
+    giff: Giff
 ) {
+    detailViewModel.getFavoriteGiffByTitle(giff.title)
+
     val scaffoldState = rememberScaffoldState(
         rememberDrawerState(initialValue = DrawerValue.Closed)
     )
+
+    val currentGiffState = detailViewModel.currentFavoriteGiff.collectAsState().value
 
     val context = LocalContext.current
 
@@ -56,7 +65,7 @@ fun GiffDetailScreen(
                 modifier = Modifier
                     .size(320.dp)
                     .padding(4.dp),
-                imageModel = giff.images.fixed_height.url,
+                imageModel = giff.url,
                 contentDescription = giff.title,
                 loading = {
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
@@ -64,9 +73,8 @@ fun GiffDetailScreen(
             )
             Row() {
                 IconButton(onClick = {
-                    val currentGiff = detailViewModel.getFavoriteGiffByTitle(giff.title)
-
-                    if (currentGiff != null) {
+                    Log.d("GIFF", "${currentGiffState?.title}")
+                    if (currentGiffState == null) {
                         detailViewModel.likeGiff(
                             detailViewModel.toFavoriteGiff(giff),
                             onSuccess = { success ->
@@ -82,13 +90,11 @@ fun GiffDetailScreen(
                                     error,
                                     Toast.LENGTH_SHORT
                                 ).show()
-
-                                navController.popBackStack()
                             }
                         )
                     } else {
                         detailViewModel.unlikeGiff(
-                            currentGiff?.id.toString(),
+                            currentGiffState.id.toString(),
                             onSuccess = { success ->
                                 Toast.makeText(
                                     context,
@@ -114,13 +120,20 @@ fun GiffDetailScreen(
                     Icon(
                         imageVector = Icons.Outlined.Favorite,
                         contentDescription = "Heart icon",
-                        tint = Color.White,
+                        tint = if (currentGiffState != null) Color.Red else Color.White,
                         modifier = Modifier
                             .size(28.dp)
                     )
                 }
                 IconButton(onClick = {
-                    Log.d("Teste", "Hello")
+                    val sendIntent: Intent = Intent().apply {
+                        action = Intent.ACTION_SEND
+                        putExtra(Intent.EXTRA_TEXT, giff.url)
+                        type = "text/palin"
+                    }
+
+                    val shareIntent = Intent.createChooser(sendIntent, giff.url)
+                    context.startActivity(shareIntent)
                 }) {
                     Icon(
                         imageVector = Icons.Default.Share,

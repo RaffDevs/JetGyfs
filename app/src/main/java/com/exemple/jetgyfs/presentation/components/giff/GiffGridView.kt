@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.exemple.jetgyfs.data.datasource.api.entity.DataEntity
+import com.exemple.jetgyfs.domain.model.Giff
 import com.exemple.jetgyfs.presentation.giff.navigation.AppScreens
 import com.google.gson.Gson
 
@@ -29,7 +30,9 @@ import com.google.gson.Gson
 @Composable
 fun GiffGridView(
     navController: NavController,
-    giffs: List<DataEntity>
+    giffs: List<Giff>,
+    defaultGrid: Boolean = true,
+    loadMoreGiffsAction: () -> Unit = {}
 ) {
     Column(
         modifier = Modifier
@@ -42,8 +45,12 @@ fun GiffGridView(
             items(giffs.size) { index ->
                 val item = giffs[index]
 
-                if ((index + 1) == giffs.size) {
-                    LoadMoreGiffsButton()
+                if ((index + 1) == giffs.size && defaultGrid) {
+                    LoadMoreGiffsButton(
+                        action = {
+                            loadMoreGiffsAction.invoke()
+                        }
+                    )
                 } else {
                     GiffGridCell(giff = item) { giff ->
                         val giffJson = Gson().toJson(giff)
@@ -60,17 +67,20 @@ fun GiffGridView(
 }
 
 @Composable
-fun LoadMoreGiffsButton() {
+fun LoadMoreGiffsButton(
+    action: () -> Unit = {}
+) {
     Card(
         modifier = Modifier
             .size(128.dp)
             .padding(4.dp)
-            .clickable {
-                Log.d("Teste", "Hello")
-            }
+            .clickable {}
     ) {
         IconButton(
-            onClick = {},
+            onClick = {
+                Log.d("Invocado", "Invoquei")
+                action.invoke()
+            },
             modifier = Modifier
                 .background(Color.Black)
         ) {
@@ -86,7 +96,7 @@ fun LoadMoreGiffsButton() {
                         .size(40.dp)
                 )
                 Text(
-                    "Load more...",
+                    "Load 50 gifs...",
                     style = TextStyle(
                         color = Color.White,
                         fontSize = 15.sp

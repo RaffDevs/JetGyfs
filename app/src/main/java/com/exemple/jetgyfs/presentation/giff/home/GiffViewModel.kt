@@ -1,5 +1,6 @@
 package com.exemple.jetgyfs.presentation.giff.home
 
+import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,6 +16,7 @@ class GiffViewModel
 @Inject constructor(private val gifRepository: GifRepository): ViewModel(){
     private val listGifs = mutableStateListOf<Giff>()
 
+
     init {
         getTrendingGifs()
     }
@@ -23,9 +25,9 @@ class GiffViewModel
         return listGifs
     }
 
-    fun getTrendingGifs() {
+    fun getTrendingGifs(limit: Int = 26) {
         viewModelScope.launch {
-            val gifs = gifRepository.getRandomGifs()
+            val gifs = gifRepository.getRandomGifs(limit)
 
             if (gifs != null) {
                 listGifs.clear()

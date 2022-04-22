@@ -7,7 +7,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.exemple.jetgyfs.data.datasource.api.entity.DataEntity
+import com.exemple.jetgyfs.domain.model.Giff
 import com.exemple.jetgyfs.presentation.giff.details.GiffDetailScreen
+import com.exemple.jetgyfs.presentation.giff.favorite.GiffFavoriteScreen
 import com.exemple.jetgyfs.presentation.giff.home.GiffHomeScreen
 import com.google.gson.Gson
 
@@ -24,6 +26,10 @@ fun GiffNavigation() {
             GiffHomeScreen(navController = navController)
         }
 
+        composable(AppScreens.FAVORITE.name) {
+            GiffFavoriteScreen(navController = navController)
+        }
+
         composable(
             AppScreens.DETAIL.name + "?giff={giff}",
             arguments = listOf(
@@ -34,7 +40,7 @@ fun GiffNavigation() {
 
         ) { backStackEntry ->
             val giffJson = backStackEntry.arguments?.getString("giff")
-            val giffObject = Gson().fromJson<DataEntity>(giffJson, DataEntity::class.java)
+            val giffObject = Gson().fromJson<Giff>(giffJson, Giff::class.java)
             GiffDetailScreen(
                 navController = navController,
                 giff = giffObject

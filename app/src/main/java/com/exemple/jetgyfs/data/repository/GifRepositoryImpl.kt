@@ -12,8 +12,10 @@ class GifRepositoryImpl
         return gifs
     }
 
-    override suspend fun getRandomGifs(): ListGiffEntity? {
-        val gifs = gifApi.getRandomGifs().body()
+    override suspend fun getRandomGifs(limit: Int): ListGiffEntity? {
+        val gifs = gifApi.getRandomGifs(
+            limit = limit
+        ).body()
         return gifs
     }
 }

@@ -7,7 +7,7 @@ import com.exemple.jetgyfs.data.datasource.db.entity.FavoriteGiff
 
 @Database(
     entities = [FavoriteGiff::class],
-    version = 1
+    version = 2
 )
 abstract class GiffDatabase : RoomDatabase() {
     abstract fun giffDao(): FavoriteGiffDao

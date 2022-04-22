@@ -9,12 +9,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.exemple.jetgyfs.data.datasource.api.entity.DataEntity
+import com.exemple.jetgyfs.domain.model.Giff
 import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
 fun GiffGridCell(
-    giff: DataEntity,
-    onClickCell: (giff: DataEntity) -> Unit
+    giff: Giff,
+    onClickCell: (giff: Giff) -> Unit
 ) {
     GlideImage(
         modifier = Modifier
@@ -23,7 +24,7 @@ fun GiffGridCell(
             .clickable {
                onClickCell(giff)
             },
-        imageModel = giff.images.fixed_height.url,
+        imageModel = giff.url,
         contentDescription = giff.title,
         loading = {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))

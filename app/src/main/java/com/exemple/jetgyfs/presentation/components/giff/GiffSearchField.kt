@@ -1,10 +1,14 @@
 package com.exemple.jetgyfs.presentation.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -21,6 +25,8 @@ fun GiffSearchField(
     onValueChange: (String) -> Unit,
     label: String,
     onImeAction: () -> Unit = {},
+    isTrailingButtonEnabled: Boolean = false,
+    trailingAction: () -> Unit = {},
     imeAction: ImeAction = ImeAction.Done
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -33,6 +39,20 @@ fun GiffSearchField(
         keyboardOptions = KeyboardOptions.Default.copy(
             imeAction = imeAction
         ),
+        trailingIcon = {
+            if (isTrailingButtonEnabled) {
+                Icon(
+                    imageVector = Icons.Filled.Clear,
+                    contentDescription = "clear text",
+                    modifier = Modifier
+                        .offset(x=2.dp)
+                        .clickable {
+                            trailingAction.invoke()
+                        },
+                    tint = Color.White
+                )
+            }
+        },
         keyboardActions = KeyboardActions(
             onDone = {
                 onImeAction()

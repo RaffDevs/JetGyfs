@@ -46,7 +46,9 @@ fun AppDrawer(
                     screen = item,
                     isSelected = currentRoute == item.name,
                     onClick = {
-                        Log.d("Nav", "Navagation")
+                        navController.navigate(
+                            route = item.name
+                        )
                     }
                 )
             }
